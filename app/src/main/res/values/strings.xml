@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Web Search</string>
+    <string name="process_text_label">Web search</string>
+    <string name="installed_message">Installed. Select text in another app and tap Web search.</string>
+</resources>
