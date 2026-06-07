@@ -15,11 +15,13 @@ The app passes the search URL to the browser with `Intent.ACTION_VIEW`.
 
 - The app does not store selected text.
 - The app does not log selected text.
-- The app does not use clipboard, Accessibility, notification, or storage permissions.
+- The app does not use clipboard, notification, or storage permissions.
 - The app does not include advertising SDKs, analytics SDKs, or external runtime libraries.
 - The search term is passed to the browser that opens the Google Search URL.
 - The app uses `INTERNET` only to check and download its APK from this GitHub repository.
 - The app uses `REQUEST_INSTALL_PACKAGES` only to hand the downloaded APK to Android's installer.
+- The optional Accessibility service is used only to show a `Web search` overlay button
+  when apps such as X do not expose Android's text selection actions.
 
 Android, Samsung One UI, Chrome, and the target app decide the order and placement
 of items in the text selection menu. This app cannot guarantee that `Web search`
@@ -36,6 +38,11 @@ Some apps, including X on some Android builds, do not reliably discover every
 intent filter on the same transient activity to make the app visible to those
 selection menus. If Android offers `Web search` as a browser for normal links,
 do not choose it as the default browser.
+
+For apps that still do not show `Web search`, enable `Web Search selection
+overlay` in Android Accessibility settings. When selectable text changes, the
+service shows a small `Web search` overlay button. Tapping it opens Google Search
+for the selected text.
 
 ## Download Latest APK from GitHub
 
@@ -101,6 +108,9 @@ Install `web-search-debug.apk` or `app-debug.apk` on the Galaxy device. If Andro
 blocks installation, allow installs from the browser or file manager you used to
 open the APK.
 
+For all-app support, open `Web Search`, tap `Enable all-app overlay`, then enable
+`Web Search selection overlay` in Android Accessibility settings.
+
 For USB debugging installation, connect the device and run:
 
 ```powershell
@@ -116,7 +126,8 @@ For USB debugging installation, connect the device and run:
 5. If Samsung shows an app selection/manage list, enable `Web search` there.
 6. Tap `Web search` and confirm that Google Search opens in a browser.
 7. If it does not appear in that app, use Share for the selected text and choose `Web search`.
-8. Confirm that `app/src/main/AndroidManifest.xml` contains no `uses-permission`.
+8. For X or other apps that still do not show it, enable `Web Search selection overlay`.
+9. Select text and tap the floating `Web search` button.
 
 ## Project Settings
 

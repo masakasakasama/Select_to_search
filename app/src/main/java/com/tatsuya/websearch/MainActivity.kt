@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Gravity
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import java.io.File
 import java.net.HttpURLConnection
@@ -26,7 +28,26 @@ class MainActivity : Activity() {
             textSize = 16f
             setPadding(32, 32, 32, 32)
         }
-        setContentView(message)
+
+        val accessibilityButton = Button(this).apply {
+            text = getString(R.string.open_accessibility_settings)
+            setOnClickListener {
+                try {
+                    startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                } catch (_: ActivityNotFoundException) {
+                    showMessage(getString(R.string.installed_message))
+                }
+            }
+        }
+
+        val content = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER
+            setPadding(32, 32, 32, 32)
+            addView(message)
+            addView(accessibilityButton)
+        }
+        setContentView(content)
 
         checkForUpdate()
     }
