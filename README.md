@@ -39,6 +39,12 @@ changes.
 Direct APK:
 
 ```text
+https://github.com/masakasakasama/Select_to_search/raw/refs/heads/main/dist/web-search-debug.apk
+```
+
+Alternate raw APK:
+
+```text
 https://raw.githubusercontent.com/masakasakasama/Select_to_search/main/dist/web-search-debug.apk
 ```
 

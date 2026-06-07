@@ -151,7 +151,7 @@ class MainActivity : Activity() {
     }
 
     private companion object {
-        const val APK_URL = "https://raw.githubusercontent.com/masakasakasama/Select_to_search/main/dist/web-search-debug.apk"
+        const val APK_URL = "https://github.com/masakasakasama/Select_to_search/raw/refs/heads/main/dist/web-search-debug.apk"
         const val APK_FILE_NAME = "web-search-update.apk"
         const val APK_MIME_TYPE = "application/vnd.android.package-archive"
         const val PREFS_NAME = "auto_update"
