@@ -31,6 +31,12 @@ menu's app list, or may not appear in every app. The app also supports Android's
 text share flow as a fallback: sharing selected text to `Web search` opens the
 same Google Search URL.
 
+Some apps, including X on some Android builds, do not reliably discover every
+`PROCESS_TEXT` app. `Web Search` also declares a minimal HTTP/HTTPS `VIEW`
+intent filter on the same transient activity to make the app visible to those
+selection menus. If Android offers `Web search` as a browser for normal links,
+do not choose it as the default browser.
+
 ## Download Latest APK from GitHub
 
 The latest debug APK is published automatically by GitHub Actions whenever `main`
