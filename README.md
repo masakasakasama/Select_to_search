@@ -49,22 +49,21 @@ for the selected text.
 The latest debug APK is published automatically by GitHub Actions whenever `main`
 changes.
 
-Direct APK:
-
-```text
-https://github.com/masakasakasama/Select_to_search/raw/refs/heads/main/dist/web-search-debug.apk
-```
-
-Alternate raw APK:
-
-```text
-https://raw.githubusercontent.com/masakasakasama/Select_to_search/main/dist/web-search-debug.apk
-```
-
-Release page:
+Open the latest release page:
 
 ```text
 https://github.com/masakasakasama/Select_to_search/releases/tag/debug-latest
+```
+
+Then download `web-search-debug.apk` from Assets.
+
+If the GitHub in-app browser gets stuck, open the release page in Chrome or
+Samsung Internet and download the APK from there.
+
+Fallback direct APK:
+
+```text
+https://github.com/masakasakasama/Select_to_search/releases/download/debug-latest/web-search-debug.apk
 ```
 
 This keeps the GitHub-hosted APK updated automatically. The app itself does not
