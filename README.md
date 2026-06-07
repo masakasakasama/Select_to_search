@@ -30,7 +30,21 @@ menu's app list, or may not appear in every app. The app also supports Android's
 text share flow as a fallback: sharing selected text to `Web search` opens the
 same Google Search URL.
 
-## Download APK from GitHub
+## Download Latest APK from GitHub
+
+The latest debug APK is published automatically by GitHub Actions whenever `main`
+changes.
+
+1. Open the latest debug APK release:
+   `https://github.com/masakasakasama/Select_to_search/releases/tag/debug-latest`
+2. Download `web-search-debug.apk` from Assets.
+3. Install it on the Android device.
+
+This keeps the GitHub-hosted APK updated automatically. The app itself does not
+check for updates because it intentionally has no network permission and does not
+communicate from inside the app.
+
+## Download APK from GitHub Actions
 
 1. Open the repository's Actions page.
 2. Open the latest successful `Build debug APK` run.
@@ -53,8 +67,9 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## Install on Galaxy
 
-Install `app-debug.apk` on the Galaxy device. If Android blocks installation,
-allow installs from the browser or file manager you used to open the APK.
+Install `web-search-debug.apk` or `app-debug.apk` on the Galaxy device. If Android
+blocks installation, allow installs from the browser or file manager you used to
+open the APK.
 
 For USB debugging installation, connect the device and run:
 
