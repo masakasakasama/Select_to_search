@@ -20,9 +20,22 @@ The app passes the search URL to the browser with `Intent.ACTION_VIEW`.
 - The app does not include advertising SDKs, analytics SDKs, or external runtime libraries.
 - The search term is passed to the browser that opens the Google Search URL.
 
-Android, Samsung One UI, and the target app decide the order and placement of
-items in the text selection menu. This app cannot guarantee that `Web search`
+Android, Samsung One UI, Chrome, and the target app decide the order and placement
+of items in the text selection menu. This app cannot guarantee that `Web search`
 always appears in the first row.
+
+On some Samsung/Chrome combinations, third-party `PROCESS_TEXT` actions may only
+appear under the three-dot overflow menu, may require enabling the app in the
+menu's app list, or may not appear in every app. The app also supports Android's
+text share flow as a fallback: sharing selected text to `Web search` opens the
+same Google Search URL.
+
+## Download APK from GitHub
+
+1. Open the repository's Actions page.
+2. Open the latest successful `Build debug APK` run.
+3. Download the `web-search-debug-apk` artifact.
+4. Extract the zip and install `app-debug.apk`.
 
 ## Build APK
 
@@ -40,22 +53,25 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## Install on Galaxy
 
-Connect the Galaxy device with USB debugging enabled, then run:
+Install `app-debug.apk` on the Galaxy device. If Android blocks installation,
+allow installs from the browser or file manager you used to open the APK.
+
+For USB debugging installation, connect the device and run:
 
 ```powershell
 .\gradlew.bat installDebug
 ```
 
-You can also install the generated APK manually on the device.
-
 ## Verify
 
-1. Open Chrome, Samsung Notes, or another text app.
-2. Select some text.
-3. Confirm that `Web search` appears in the text selection menu or overflow menu.
-4. Tap `Web search`.
-5. Confirm that Google Search opens in a browser.
-6. Confirm that `app/src/main/AndroidManifest.xml` contains no `uses-permission`.
+1. Install and open `Web Search` once.
+2. Open Chrome, Samsung Notes, Gmail, or another app with selectable text.
+3. Select some text.
+4. Check both the first text selection menu and the three-dot overflow menu.
+5. If Samsung shows an app selection/manage list, enable `Web search` there.
+6. Tap `Web search` and confirm that Google Search opens in a browser.
+7. If it does not appear in that app, use Share for the selected text and choose `Web search`.
+8. Confirm that `app/src/main/AndroidManifest.xml` contains no `uses-permission`.
 
 ## Project Settings
 
