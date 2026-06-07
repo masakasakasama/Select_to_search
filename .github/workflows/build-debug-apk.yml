@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-debug-apk:
     runs-on: ubuntu-latest
@@ -26,9 +29,36 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
-      - name: Upload debug APK
+      - name: Upload debug APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: web-search-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Prepare release APK
+        run: |
+          mkdir -p release
+          cp app/build/outputs/apk/debug/app-debug.apk release/web-search-debug.apk
+
+      - name: Move latest tag
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git tag -f debug-latest "$GITHUB_SHA"
+          git push -f origin debug-latest
+
+      - name: Publish latest debug APK release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: debug-latest
+          name: Latest debug APK
+          body: |
+            Latest debug APK built from main.
+
+            Install `web-search-debug.apk` on your Android device.
+          prerelease: true
+          make_latest: true
+          files: release/web-search-debug.apk
+          fail_on_unmatched_files: true
+          overwrite_files: true
