@@ -1,6 +1,7 @@
 package com.tatsuya.websearch
 
 import android.app.Activity
+import android.app.SearchManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -10,15 +11,24 @@ class ProcessTextActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val selectedText = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
-            ?.toString()
-            ?.trim()
+        val selectedText = extractQuery(intent)
 
         if (!selectedText.isNullOrEmpty()) {
             openGoogleSearch(selectedText)
         }
 
         finish()
+    }
+
+    private fun extractQuery(sourceIntent: Intent): String? {
+        val text = when (sourceIntent.action) {
+            Intent.ACTION_PROCESS_TEXT -> sourceIntent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
+            Intent.ACTION_SEND -> sourceIntent.getCharSequenceExtra(Intent.EXTRA_TEXT)
+            Intent.ACTION_WEB_SEARCH -> sourceIntent.getStringExtra(SearchManager.QUERY)
+            else -> null
+        }
+
+        return text?.toString()?.trim()
     }
 
     private fun openGoogleSearch(query: String) {
