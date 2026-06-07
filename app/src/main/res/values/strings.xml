@@ -7,7 +7,4 @@
     <string name="downloading_update_message">Downloading update...</string>
     <string name="install_update_message">Update downloaded. Continue in Android installer.</string>
     <string name="allow_install_message">Allow installs from this app, then reopen Web Search.</string>
-    <string name="open_accessibility_settings">Enable all-app overlay</string>
-    <string name="accessibility_service_label">Web Search selection overlay</string>
-    <string name="accessibility_service_description">Shows a Web search button when text is selected in apps that do not show Android process text actions.</string>
 </resources>
