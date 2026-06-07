@@ -36,10 +36,17 @@ same Google Search URL.
 The latest debug APK is published automatically by GitHub Actions whenever `main`
 changes.
 
-1. Open the latest debug APK release:
-   `https://github.com/masakasakasama/Select_to_search/releases/tag/debug-latest`
-2. Download `web-search-debug.apk` from Assets.
-3. Install it on the Android device.
+Direct APK:
+
+```text
+https://raw.githubusercontent.com/masakasakasama/Select_to_search/main/dist/web-search-debug.apk
+```
+
+Release page:
+
+```text
+https://github.com/masakasakasama/Select_to_search/releases/tag/debug-latest
+```
 
 This keeps the GitHub-hosted APK updated automatically. The app itself does not
 silently install updates; Android still shows the installer confirmation.
