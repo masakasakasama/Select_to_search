@@ -13,12 +13,13 @@ The app passes the search URL to the browser with `Intent.ACTION_VIEW`.
 
 ## Privacy and Permissions
 
-- The app has no network permission.
 - The app does not store selected text.
 - The app does not log selected text.
 - The app does not use clipboard, Accessibility, notification, or storage permissions.
 - The app does not include advertising SDKs, analytics SDKs, or external runtime libraries.
 - The search term is passed to the browser that opens the Google Search URL.
+- The app uses `INTERNET` only to check and download its APK from this GitHub repository.
+- The app uses `REQUEST_INSTALL_PACKAGES` only to hand the downloaded APK to Android's installer.
 
 Android, Samsung One UI, Chrome, and the target app decide the order and placement
 of items in the text selection menu. This app cannot guarantee that `Web search`
@@ -41,8 +42,18 @@ changes.
 3. Install it on the Android device.
 
 This keeps the GitHub-hosted APK updated automatically. The app itself does not
-check for updates because it intentionally has no network permission and does not
-communicate from inside the app.
+silently install updates; Android still shows the installer confirmation.
+
+## In-App Auto Update
+
+When `Web Search` is opened from the launcher, it checks the `debug-latest`
+GitHub Release APK.
+
+- First launch stores the current APK marker as the baseline.
+- Later launches download the APK when the GitHub Release asset changes.
+- After download, Android's package installer opens.
+- The user must confirm the install because normal Android apps cannot silently update themselves.
+- If Android asks for permission to install unknown apps, allow installs for `Web Search`, then reopen the app.
 
 ## Download APK from GitHub Actions
 
